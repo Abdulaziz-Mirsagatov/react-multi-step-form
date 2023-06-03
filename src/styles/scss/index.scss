@@ -1,0 +1,619 @@
+// Variables
+$primary-dark: hsl(213, 96%, 18%);
+$primary-light: hsl(243, 100%, 62%);
+$neutral-dark: hsl(228, 100%, 84%);
+$neutral-light: hsl(206, 94%, 87%);
+$secondary: hsl(354, 84%, 57%);
+
+$desktop-breakpoint: 720px;
+
+@font-face {
+  font-family: Ubuntu;
+  src: url("../../assets/fonts/Ubuntu-Regular.ttf");
+}
+
+$font-family-default: Ubuntu, sans-serif;
+//
+
+// Set up
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img,
+svg {
+  max-width: 100%;
+}
+input,
+a,
+button {
+  font-family: inherit;
+  color: inherit;
+}
+.grid-flow {
+  display: grid;
+}
+.flexbox {
+  display: flex;
+}
+.btn {
+  border: 0;
+  background: 0;
+  cursor: pointer;
+}
+//
+
+body {
+  font-family: $font-family-default;
+  background-color: rgba($color: $neutral-light, $alpha: 0.25);
+  line-height: 1.5;
+}
+
+.wrapper {
+  min-height: 100dvh;
+  align-items: start;
+}
+
+.form-container {
+  height: 100%;
+  align-content: space-between;
+
+  .desktop-sidebar {
+    display: none;
+  }
+
+  .mobile-sidebar {
+    background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    align-items: start;
+    justify-items: center;
+
+    .btn-group {
+      width: 220px;
+      justify-content: space-between;
+
+      button {
+        width: 40px;
+        aspect-ratio: 1 / 1;
+        border-radius: 100%;
+        border: 1px solid $neutral-light;
+        color: $neutral-light;
+        font-weight: bold;
+        font-size: 1em;
+        margin-top: 1.5em;
+      }
+
+      button.active {
+        background-color: $neutral-light;
+        color: $primary-dark;
+      }
+    }
+  }
+
+  .form {
+    justify-items: center;
+
+    .form-page {
+      position: absolute;
+      top: 100px;
+      align-content: start;
+      background-color: white;
+      width: 90%;
+      padding: 2em 1.4em;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba($color: black, $alpha: 0.25);
+
+      .title {
+        color: $primary-dark;
+      }
+
+      .description {
+        color: gray;
+        font-size: 1em;
+        width: 30ch;
+      }
+    }
+
+    .personal-info-page {
+      .input-group {
+        margin-top: 0.5em;
+
+        .label-container {
+          margin-top: 0.8em;
+          margin-bottom: 0.2em;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        label {
+          color: $primary-dark;
+        }
+
+        .error-msg {
+          color: $secondary;
+        }
+
+        input {
+          padding: 0.8em;
+          font-size: 1em;
+          font-weight: bold;
+          border-radius: 5px;
+          border: 1px solid gray;
+          color: $primary-dark;
+          outline-color: $primary-light;
+          caret-color: $primary-dark;
+        }
+
+        input.error {
+          border-color: $secondary;
+          color: $secondary;
+        }
+      }
+    }
+
+    .select-plan-page {
+      .input-group {
+        margin-top: 1em;
+        gap: 1em;
+        flex-direction: column;
+
+        .plan-container {
+          border: 1px solid gray;
+          border-radius: 5px;
+          padding: 1em;
+          gap: 1em;
+          background-color: transparent;
+          cursor: pointer;
+        }
+
+        .plan-container.active {
+          border-color: $primary-light;
+          background-color: rgba($color: $neutral-light, $alpha: 0.25);
+        }
+
+        .plan-title {
+          color: $primary-dark;
+          font-size: 1.2em;
+        }
+
+        .plan-pricing {
+          color: gray;
+        }
+
+        .yearly-plan-benefit {
+          color: $primary-dark;
+        }
+      }
+
+      .toggle-container {
+        margin-top: 1em;
+        background-color: rgba($color: gray, $alpha: 0.05);
+        padding: 1em 0;
+        border-radius: 10px;
+        justify-content: center;
+        gap: 1em;
+
+        .plan-type-title {
+          color: gray;
+          font-size: 1em;
+        }
+
+        .plan-type-title.active {
+          color: $primary-dark;
+        }
+
+        .toggle {
+          cursor: pointer;
+          position: relative;
+          width: 45px;
+          height: 25px;
+          padding: 0 5px;
+          background-color: $primary-dark;
+          border-radius: 20px;
+          align-items: center;
+
+          .ball {
+            width: 16px;
+            aspect-ratio: 1 / 1;
+            border-radius: 100%;
+            background-color: white;
+          }
+        }
+
+        .toggle.left {
+          justify-content: start;
+        }
+
+        .toggle.right {
+          justify-content: end;
+        }
+      }
+    }
+
+    .pick-add-on-page {
+      .input-group {
+        margin-top: 1em;
+        gap: 1em;
+        flex-direction: column;
+
+        .add-on-container {
+          border: 1px solid gray;
+          border-radius: 5px;
+          padding: 1em;
+          gap: 1em;
+          align-items: center;
+          transition: border-color 0.3s;
+        }
+
+        input {
+          position: relative;
+          appearance: none;
+          border: 1px solid gray;
+          width: 20px;
+          aspect-ratio: 1 / 1;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        input::before {
+          content: "";
+          top: 0;
+          left: 0;
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          border-radius: 5px;
+          background-color: $primary-light;
+          transform-origin: bottom left;
+          background-image: url("../../assets/images/icon-checkmark.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          transform: scale(0);
+        }
+
+        input:checked {
+          border: 0;
+        }
+
+        input:checked::before {
+          transform: scale(1);
+        }
+
+        .add-on-container.active {
+          border-color: $primary-light;
+          background-color: rgba($color: $neutral-light, $alpha: 0.25);
+        }
+
+        .add-on-title {
+          font-size: 1em;
+          color: $primary-dark;
+        }
+
+        .add-on-description {
+          color: gray;
+          font-size: 0.8em;
+        }
+
+        .add-on-pricing {
+          color: $primary-light;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .confirmation-page {
+      .selections-container {
+        margin-top: 1em;
+        flex-direction: column;
+        gap: 0.8em;
+        background-color: rgba($color: gray, $alpha: 0.05);
+        padding: 1.2em;
+        border-radius: 10px;
+
+        .selection:first-of-type {
+          padding-bottom: 0.5em;
+          border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+          .selection-title {
+            color: $primary-dark;
+            font-weight: bold;
+            text-transform: capitalize;
+          }
+
+          .change-selection-link {
+            color: gray;
+          }
+
+          .selection-pricing {
+            font-weight: bold;
+          }
+        }
+
+        .selection {
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .selection-title {
+          font-size: 1em;
+          color: gray;
+          font-weight: normal;
+        }
+
+        .selection-pricing {
+          color: $primary-dark;
+        }
+      }
+
+      .selection-total {
+        justify-content: space-between;
+        margin-top: 1em;
+        padding-inline: 0.8em;
+
+        h2 {
+          color: gray;
+          font-size: 1em;
+          font-weight: normal;
+        }
+
+        p {
+          color: $primary-light;
+          font-size: 1em;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .page-navigation {
+      width: 100%;
+      padding: 1em;
+      justify-content: space-between;
+      background-color: white;
+
+      .btn {
+        outline-color: $primary-light;
+      }
+
+      .back-btn {
+        color: gray;
+        font-size: 1em;
+      }
+
+      .next-btn,
+      .confirm-btn {
+        padding: 0.8em 1.2em;
+        background-color: $primary-dark;
+        color: white;
+        border-radius: 5px;
+        font-size: 1em;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .thank-you-page {
+    position: absolute;
+    justify-self: center;
+    gap: 0.5em;
+    top: 100px;
+    align-content: start;
+    background-color: white;
+    width: 90%;
+    padding: 4em 1.4em;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba($color: black, $alpha: 0.25);
+    justify-items: center;
+
+    h1 {
+      color: $primary-dark;
+      margin-top: 0.5em;
+    }
+
+    p {
+      color: gray;
+      text-align: center;
+      width: 30ch;
+    }
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .wrapper {
+    align-items: center;
+  }
+
+  .form-container {
+    width: min(960px, 100%);
+    height: auto;
+    min-height: 550px;
+    align-content: stretch;
+    margin-inline: auto;
+    grid-template-columns: 25% 75%;
+    background-color: white;
+    padding: 1em;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba($color: black, $alpha: 0.15);
+
+    .desktop-sidebar {
+      display: grid;
+    }
+
+    .mobile-sidebar {
+      display: none;
+    }
+
+    .desktop-sidebar {
+      background-image: url("../../assets/images/bg-sidebar-desktop.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      align-content: start;
+      padding: 2em 1.5em;
+      border-radius: 10px;
+
+      .btn-container {
+        gap: 2em;
+
+        .btn-group {
+          align-items: center;
+          gap: 1em;
+
+          .container {
+            align-content: space-between;
+
+            h2,
+            p {
+              text-transform: uppercase;
+            }
+
+            p {
+              color: $neutral-dark;
+              font-size: 0.8em;
+            }
+
+            h2 {
+              color: white;
+              font-size: 1em;
+            }
+          }
+        }
+
+        button {
+          width: 40px;
+          aspect-ratio: 1 / 1;
+          border-radius: 100%;
+          border: 1px solid $neutral-light;
+          color: $neutral-light;
+          font-weight: bold;
+          font-size: 1em;
+        }
+
+        button.active {
+          background-color: $neutral-light;
+          color: $primary-dark;
+        }
+      }
+    }
+
+    .form {
+      width: 80%;
+      margin-inline: auto;
+
+      .form-page {
+        position: static;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+
+        .description {
+          width: 100%;
+        }
+      }
+
+      .personal-info-page {
+        .input-group {
+          margin-top: 1em;
+
+          .label-container {
+            margin-top: 1em;
+          }
+        }
+      }
+
+      .select-plan-page {
+        .input-group {
+          margin-top: 2em;
+          flex-direction: row;
+          justify-content: space-between;
+
+          .plan-container {
+            flex-direction: column;
+            width: 100%;
+            gap: 3em;
+            transition: border-color 0.3s;
+
+            img {
+              width: 35%;
+            }
+          }
+
+          .plan-container:hover {
+            border-color: $primary-light;
+          }
+        }
+      }
+
+      .pick-add-on-page {
+        .input-group {
+          margin-top: 2em;
+
+          .add-on-container {
+            cursor: pointer;
+          }
+
+          .add-on-container:hover {
+            border-color: $primary-light;
+          }
+        }
+      }
+
+      .confirmation-page {
+        .selections-container {
+          margin-top: 2em;
+
+          .selection:first-of-type {
+            padding-bottom: 1.4em;
+
+            .change-selection-link {
+              transition: color 0.3s;
+            }
+
+            .change-selection-link:hover {
+              color: $primary-light;
+            }
+          }
+        }
+
+        .selection-total {
+          margin-top: 2em;
+        }
+      }
+    }
+
+    .page-navigation {
+      align-self: end;
+
+      .btn {
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .back-btn:hover {
+        color: $primary-dark;
+      }
+
+      .next-btn:hover {
+        background-color: $primary-light;
+      }
+
+      .confirm-btn:hover {
+        background-color: rgba($color: $primary-light, $alpha: 0.5);
+      }
+    }
+
+    .thank-you-page {
+      position: static;
+      align-content: center;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+
+      p{
+        width: 50ch;
+      }
+    }
+  }
+}
