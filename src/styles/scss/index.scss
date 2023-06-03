@@ -326,6 +326,8 @@ body {
           }
 
           .change-selection-link {
+            text-decoration: underline;
+            font-size: 1em;
             color: gray;
           }
 
@@ -611,7 +613,7 @@ body {
       border-radius: 0;
       box-shadow: none;
 
-      p{
+      p {
         width: 50ch;
       }
     }

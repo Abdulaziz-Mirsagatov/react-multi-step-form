@@ -38,13 +38,9 @@ const Confirmation = ({
             <h2 className="selection-title">
               {selectedPlan} ({billingType})
             </h2>
-            <a
-              href="#"
-              className="change-selection-link"
-              onClick={(e) => changePlan(e)}
-            >
+            <button className="btn change-selection-link" onClick={changePlan}>
               Change
-            </a>
+            </button>
           </div>
           <p className="selection-pricing">
             {data[billingType].plans[selectedPlan]}

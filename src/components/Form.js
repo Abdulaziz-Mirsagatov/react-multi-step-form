@@ -104,7 +104,7 @@ const Form = ({
           billingType={billingType}
           selectedPlan={selectedPlan}
           addOns={addOns}
-          changePlan={(e) => changePlan(e)}
+          changePlan={changePlan}
           data={data}
         />
       );

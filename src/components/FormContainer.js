@@ -72,11 +72,6 @@ const FormContainer = () => {
     if (validateInputs()) setSelectedPage((prevPage) => prevPage + 1);
   };
 
-  const changePlan = (e) => {
-    e.preventDefault();
-    setSelectedPage(2);
-  };
-
   return (
     <div className="form-container grid-flow">
       <Sidebar
@@ -93,7 +88,7 @@ const FormContainer = () => {
           selectedPage={selectedPage}
           goBack={goBack}
           goNext={goNext}
-          changePlan={changePlan}
+          changePlan={() => setSelectedPage(2)}
           name={name}
           email={email}
           phone={phone}

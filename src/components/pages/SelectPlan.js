@@ -21,7 +21,7 @@ const SelectPlan = ({
         <div
           id="arcade"
           className={
-            selectedPlan == "arcade"
+            selectedPlan === "arcade"
               ? "plan-container active flexbox"
               : "plan-container flexbox"
           }
@@ -40,7 +40,7 @@ const SelectPlan = ({
         <div
           id="advanced"
           className={
-            selectedPlan == "advanced"
+            selectedPlan === "advanced"
               ? "plan-container active flexbox"
               : "plan-container flexbox"
           }
@@ -59,7 +59,7 @@ const SelectPlan = ({
         <div
           id="pro"
           className={
-            selectedPlan == "pro"
+            selectedPlan === "pro"
               ? "plan-container active flexbox"
               : "plan-container flexbox"
           }

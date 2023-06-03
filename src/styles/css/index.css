@@ -271,6 +271,8 @@ body {
   text-transform: capitalize;
 }
 .form-container .form .confirmation-page .selections-container .selection:first-of-type .change-selection-link {
+  text-decoration: underline;
+  font-size: 1em;
   color: gray;
 }
 .form-container .form .confirmation-page .selections-container .selection:first-of-type .selection-pricing {
